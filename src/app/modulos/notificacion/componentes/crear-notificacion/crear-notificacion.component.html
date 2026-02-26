@@ -1,0 +1,39 @@
+<h1 class="title">Ingrese la información para crear la notificación</h1>
+<form [formGroup]="formularioNotificacion">
+    <!-- Selección de rol -->
+    <div class="tab-notificacion-rol">
+        <mat-form-field appearance="fill" class="select-rol">
+            <mat-label>Selecciona el Rol a Notificar</mat-label>
+            <mat-select formControlName="rol" (selectionChange)="seleccionarRol()">
+                <mat-option [value]="'todos'">TODOS</mat-option>
+                <mat-option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="formularioNotificacion.get('rol')?.hasError('required')">
+                Debes seleccionar un rol.
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="dialog-field" appearance="fill">
+            <mat-label>Mensaje para la Notificación</mat-label>
+            <textarea formControlName="mensajeNotificacion" matInput rows="5" required></textarea>
+            <mat-error *ngIf="formularioNotificacion.get('mensajeNotificacion')?.hasError('required')">
+                El mensaje es obligatorio.
+            </mat-error>
+            <mat-error *ngIf="formularioNotificacion.get('mensajeNotificacion')?.hasError('minlength')">
+                El mensaje debe tener al menos 5 caracteres.
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" [disabled]="formularioNotificacion.invalid "
+            class="buttonStyleConfirm" (click)="enviarNotificacion()">
+            Enviar
+        </button>
+        <button mat-button mat-raised-button color="warn" (click)="cancelar()"
+            class="buttonStyleCancel">Cancelar</button>
+    </mat-dialog-actions>
+</form>

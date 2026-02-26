@@ -80,6 +80,18 @@ const routes: Routes = [
         loadChildren: () => import("./modulos/horarios/horario.module")
           .then(m => m.HorarioModule)
       },
+      {
+        path: 'notificaciones',
+        canActivateChild: [EsCoordinadorGuard, EsAsistenteAcademicoGuard],
+        loadChildren: () => import("./modulos/notificacion/notificacion.module")
+        .then(m => m.NotificacionModule)
+      },
+      {
+        path: 'notificaciones/programacion-academica/:id',
+        canActivateChild: [EsCoordinadorGuard, EsAsistenteAcademicoGuard],
+        loadChildren: () => import("./modulos/notificacion/notificacion.module")
+        .then(m => m.NotificacionModule)
+      },
     ]
   },
   {

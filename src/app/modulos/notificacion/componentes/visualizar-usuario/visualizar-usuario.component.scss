@@ -1,0 +1,33 @@
+.parteSuperior {
+    display: flex;
+    justify-content: space-between;
+}
+.contenedor {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4vh;
+}
+.btnSuperior {
+    margin: 2vh;
+}
+
+.mat-column-nombre {
+    flex: 0 0 20%;
+}
+
+.mat-column-tipo {
+    flex: 0 0 20%;
+}
+
+.mat-column-aforo {
+    flex: 0 0 12%;
+}
+
+.mat-column-acciones {
+    flex: 0 0 20%;
+}
+
+mat-form-field {
+    width: 22vw;
+} 

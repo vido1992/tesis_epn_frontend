@@ -1,0 +1,54 @@
+<div class="contenedor">
+    <div class="parteSuperior">
+        <div>
+            <button class="btnSuperior" *ngIf="esCoordinador()" 
+                    mat-raised-button color="primary" (click)="abrirCreacionNotificacion()">
+                Crear nueva notificación
+            </button>
+
+            <button class="btnSuperior" *ngIf="esCoordinador()" 
+                    mat-raised-button color="primary" (click)="resumenProgramacionNotificacion()">
+                Resumen de Programacion
+            </button>
+
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Filtro: </mat-label>
+                <input matInput (keyup)="filtrarTabla($event)" 
+                        placeholder="Ingrese el texto a buscar" #input>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <mat-table [dataSource]="datosFilaUsuario" matSort #tablaSort="matSort" matSortActive="rolusuario"
+        matSortDirection="asc">
+        <ng-container matColumnDef="usuarioid">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+            <mat-cell *matCellDef="let usuario"> {{usuario.usuarioid}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="usuariocorreo">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Correo electrónico</mat-header-cell>
+            <mat-cell *matCellDef="let usuario"> {{usuario.usuariocorreo}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="rolusuario">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Rol Usuario</mat-header-cell>
+            <mat-cell *matCellDef="let usuario"> {{usuario.rolusuario}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+            <mat-cell *matCellDef="let fila">
+                <button mat-icon-button *ngIf="esCoordinador()" 
+                (click)="abrirUnaNotificacion(fila)" matTooltip="Notificar">
+                    <mat-icon color="primary">notifications</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSize]="10" showFirstLastButtons></mat-paginator>
+</div>

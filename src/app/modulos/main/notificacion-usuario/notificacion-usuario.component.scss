@@ -1,0 +1,40 @@
+.notification-container {
+    position: relative;
+    width: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+ 
+  
+  .notification-content {
+    margin-top: 10px;
+  }
+  
+  .notification-message {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .notification-actions {
+    margin-top: 20px;
+  }
+  
+  .accept-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .accept-button:hover {
+    background-color: #0056b3;
+  }
+  

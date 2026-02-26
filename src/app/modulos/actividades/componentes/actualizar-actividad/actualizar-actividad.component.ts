@@ -21,6 +21,7 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { ActividadEntity } from "../../modelos/actividad.interface";
 import { ActivatedRoute } from "@angular/router";
 import { ObtenerEspacioFisico } from "../../modelos/espacios-fisicos.interface";
+import { NotificacionApiService } from 'src/app/modulos/notificacion/servicios/notificacion_api.service';
 
 export interface UserData {
   id: string;
@@ -77,6 +78,7 @@ export class ActualizarActividadComponent implements OnInit {
     private actividadService: ActividadesApiService,
     private route: ActivatedRoute,
     private readonly fb: FormBuilder,
+    private readonly notificacionService: NotificacionApiService,
   ) {
     this.cargarDatosPrevios();
 
@@ -195,6 +197,18 @@ export class ActualizarActividadComponent implements OnInit {
         .subscribe(
           {
             next: () => {
+              this.notificacionService.actividadesNotificacion(idActividadRuta.toString()).subscribe({
+                next: (result: any) => {
+                  console.log("Notificación con éxito:", result);
+                },
+                error: (err: any) => {
+                  console.error("Error al enviar la notificación:", err);
+                },
+                complete: () => {
+                  console.log("El envío de la notificación ha finalizado.");
+                }
+              });
+              
               Swal.fire({
                 title: 'Se ha actualizado correctamente una actividad.',
                 icon: 'success',

@@ -1,0 +1,27 @@
+<h1 class="title" style="font-size: 135%; text-align: center;">Usuario a notificar: {{ correoUsuario }}</h1>
+<h1 class="title" style="font-size: 125%; text-align: center;">Ingrese el mensaje para la notificación</h1>
+ 
+<form [formGroup]="formularioUnaNotificacion">
+    <div>
+        <mat-form-field class="dialog-field" appearance="fill">
+            <mat-label>Mensaje para la Notificación</mat-label>
+            <textarea formControlName="mensajeUnaNotificacion" matInput rows="5" required></textarea>
+            <mat-error *ngIf="formularioUnaNotificacion.get('mensajeUnaNotificacion')?.hasError('required')">
+                El mensaje es obligatorio.
+            </mat-error>
+            <mat-error *ngIf="formularioUnaNotificacion.get('mensajeUnaNotificacion')?.hasError('minlength')">
+                El mensaje debe tener al menos 5 caracteres.
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+
+    <mat-dialog-actions>
+        <button mat-raised-button color="primary" [disabled]="formularioUnaNotificacion.invalid "
+            class="buttonStyleConfirm" (click)="unaNotificar()">
+            Enviar
+        </button>
+        <button mat-button mat-raised-button color="warn" (click)="cancelar()"
+            class="buttonStyleCancel">Cancelar</button>
+    </mat-dialog-actions>
+</form>

@@ -5,7 +5,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { Docente } from '../../modelos/docente.interface';
 import { DocenteApiService } from '../../servicios/docentes_api.service';
-
+import { NotificacionApiService } from 'src/app/modulos/notificacion/servicios/notificacion_api.service';
+import { Notificacion } from '../../../notificacion/modelos/notificacion.interFace';
 @Component({
   selector: 'app-crear-docente',
   templateUrl: './crear-docente.component.html',
@@ -16,7 +17,8 @@ export class CrearDocenteComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly docenteService: DocenteApiService,
-    private dialogReference: MatDialogRef<CrearDocenteComponent>
+    private dialogReference: MatDialogRef<CrearDocenteComponent>,
+    private readonly notificacionService: NotificacionApiService,
   ) { }
 
   formGroup?: FormGroup;
@@ -52,6 +54,24 @@ export class CrearDocenteComponent implements OnInit {
             next: (result: any) => {
               const substring = String(result.mensaje);
               if (substring.substr(0, 1) == "S") {
+                
+                const nuevaNotificacion: Notificacion = {
+                  mensaje: "Se ha creado un nuevo docente",
+                  fechaNotificacion: new Date().toISOString(),
+                  idRolANotificar: "todos"
+                };
+                this.notificacionService.crearNotifficacionMasiva(nuevaNotificacion).subscribe({
+                  next: (result: any) => {
+                    console.log("Notificación masiva enviada con éxito:", result);
+                  },
+                  error: (err: any) => {
+                    console.error("Error al enviar la notificación masiva:", err);
+                  },
+                  complete: () => {
+                    console.log("El envío de la notificación masiva ha finalizado.");
+                  }
+                });
+
                 Swal.fire(
                   'Registro creado',
                   `${result.mensaje}`,

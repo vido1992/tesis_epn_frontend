@@ -3,6 +3,7 @@ import { Docente } from "../../docentes/modelos/docente.interface";
 import { Grupo } from "../../grupos/modelos/grupo.interface";
 import { TipoAula } from "../../parametros-inciales/models/tipo-aula.interface";
 
+
 export interface CrearActividad {
     idTipoAula?: string;
     idDocente?: string;
@@ -18,6 +19,10 @@ export interface Actividad {
     idAsignatura?: string;
     idGrupo?: string;
     duracion?: number;
+    asignatura?: Asignatura; 
+    docente?:Docente;
+    grupo?: Grupo; 
+    numeroEstudiantes?:number;
 }
 
 //

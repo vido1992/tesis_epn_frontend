@@ -1,0 +1,17 @@
+<div *ngIf="actividades.length > 0">
+    <ul>
+      <li *ngFor="let actividad of actividades">
+ 
+        
+        <!-- Acceso a las propiedades de asignatura -->
+        <p><strong>Asignatura:</strong> {{ actividad.asignatura?.nombre }} ({{ actividad.asignatura?.codigo }})</p>
+        
+        <!-- Acceso a las propiedades de grupo -->
+        <p><strong>Grupo:</strong> {{ actividad.grupo?.nombre }}</p>
+        <p><strong>Docente:</strong> {{ actividad.docente?.nombreCompleto }}</p>
+        <p><strong>Duración:</strong> {{ actividad.duracion }} horas</p>
+        <p><strong>Número de Estudiantes:</strong> {{ actividad.numeroEstudiantes }}</p>
+      </li>
+    </ul>
+  </div>
+  

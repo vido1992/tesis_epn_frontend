@@ -14,6 +14,22 @@
     <span class="spacer"></span>
     <!-- Usuario -->
     <span class="correoUsuario">{{usuario!.correo}}</span>
+
+    <button mat-icon-button class="notification-container" style="height: 100%;"
+        [matMenuTriggerFor]="listaNotificaciones">
+        <mat-icon class="notification-bell" style="width: 100%;">notifications</mat-icon>
+        <span class="notification-count" *ngIf="cantidadNotificaciones > 0">{{ cantidadNotificaciones }}</span>
+    </button>
+    <mat-menu #listaNotificaciones="matMenu">
+        <div *ngFor="let notificacion of datosFilaNotificacion.data" 
+        [style.color]="notificacion.visto === 'no' ? 'white' : 'black'" 
+        [style.backgroundColor]="notificacion.visto === 'no' ? '#1e466e' : 'transparent'" >
+            <button mat-menu-item class="boton-notificacion" (click)="abrirnotificacion(notificacion)">
+                <span >{{ notificacion.mensaje | slice:0:18 }}...</span> 
+            </button>
+          </div>
+    </mat-menu>
+
     <!-- Menú de usuario -->
     <button mat-icon-button class="iconoUsuario" [matMenuTriggerFor]="menuUsuario" aria-label="Usuario">
         <mat-icon id="cuentaIcono" [inline]="true">account_circle</mat-icon>
@@ -146,6 +162,20 @@
                         </div>
                     </div>
                 </mat-list-item>
+
+                <!-- Módulo de gestión de notificaciones -->
+                <mat-list-item [ngClass]="mostrarRutaActiva('/spa/notificaciones')"
+                    [routerLink]="['/spa/notificaciones']">
+                    <div class="nav-item">
+                        <button mat-icon-button>
+                            <mat-icon>check</mat-icon>
+                        </button>
+                        <div class="nav-button-label">
+                            <a>Notificaciones</a>
+                        </div>
+                    </div>
+                </mat-list-item>
+
             </mat-nav-list>
 
             <!-- Gestor de espacios físicos -->

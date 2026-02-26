@@ -1,0 +1,15 @@
+ <div class="notification-container">  
+    <!-- Contenido de la notificación -->
+    <div class="notification-content">
+      <p class="notification-message" [innerHTML]="notificacion.mensaje" 
+      style="text-align: left;"></p>
+    </div>
+  
+    <!-- Botón de aceptar -->
+    <div class="notification-actions">
+      <button class="accept-button" (click)="notificacionVista(notificacion)">
+        Aceptar
+      </button>
+    </div>
+  </div>
+  

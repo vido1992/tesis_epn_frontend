@@ -31,6 +31,8 @@ import { EsJefeDeDepartamentoGuard } from './servicios/auth/guards/es-jefe-de-de
 import { MatTableExporterModule } from 'mat-table-exporter';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { EsAsistenteAcademicoGuard } from './servicios/auth/guards/es-asistente-academico.guard';
+import { NotificacionUsuarioComponent } from './modulos/main/notificacion-usuario/notificacion-usuario.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { EsAsistenteAcademicoGuard } from './servicios/auth/guards/es-asistente-
     MatListModule,
     MatProgressSpinnerModule,
     MatTableExporterModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule
   ],
   providers: [
     AuthService,

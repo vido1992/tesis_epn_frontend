@@ -54,6 +54,13 @@ export class LoginComponent implements OnInit {
             // Guardar información del usuario
             this.usuarioService.guardarUsuario(data.usuario);
             console.log(data)
+
+            const idRol=data.usuario.otros.idrol
+            const idUsuario=data.usuario.otros.idusuario
+ 
+            sessionStorage.setItem('idUsuario', idUsuario);
+            sessionStorage.setItem('idRol', idRol);
+
             this.errorSesion = false;
 
             const toast = Swal.mixin({
